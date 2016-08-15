@@ -201,14 +201,14 @@ function iniciovideo3(){
 							 }
 	);
 	$('video').addEvent(
-						'timeupdate',
+						'ended',
 						function(){
-							if( $('video').currentTime>=1.8){
+							//if( $('video').currentTime>=1.8){
 								 $('playbutton').css('display','block');
 								  $('video').pause();
 								  $('video').currentTime='0';
 								  
-							}
+							//}
 						}
 	)
 	
