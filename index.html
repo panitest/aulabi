@@ -54,7 +54,7 @@ function initVideo1(){
 	if ($('video').hasAttribute("controls")) {
      	$('video').removeAttribute("controls")   
     }
-	$('video').addEventListener("play",function() { if($('video').currentTime<33)$('video').currentTime='33';});
+	$('video').addEventListener("play",function() {$('video').currentTime='0';});
 	$('playbutton').addEvent(
 							 'click',
 							 function(){
@@ -66,10 +66,10 @@ function initVideo1(){
 	$('video').addEvent(
 						'timeupdate',
 						function(){
-							if( $('video').currentTime>=71.5){
+							if( $('video').currentTime>=38){
 								 $('playbutton').css('display','block');
 								  $('video').pause();
-								  $('video').currentTime='33';
+								  $('video').currentTime='0';
 								  
 							}
 						}
@@ -117,7 +117,7 @@ function iniciovideo2(){
      	$('video').removeAttribute("controls")   
     }
 	$('video').muted=1;
-	$('video').addEventListener("play",function() { if($('video').currentTime<27)$('video').currentTime='27';});
+	$('video').addEventListener("play",function() {$('video').currentTime='0';});
 	$('playbutton').addEvent(
 							 'click',
 							 function(){
@@ -138,10 +138,10 @@ function iniciovideo2(){
 	$('video').addEvent(
 						'timeupdate',
 						function(){
-							if( $('video').currentTime>=33){
+							if( $('video').currentTime>=4){
 								 $('playbutton').css('display','block');
 								  $('video').pause();
-								  $('video').currentTime='27';
+								  $('video').currentTime='0';
 								  
 							}
 						}
@@ -189,7 +189,7 @@ function iniciovideo3(){
 	if ($('video').hasAttribute("controls")) {
      	$('video').removeAttribute("controls")   
     }
-	$('video').addEventListener("play",function() { if($('video').currentTime<36)$('video').currentTime='36';});
+	$('video').addEventListener("play",function() {$('video').currentTime='0';});
 	$('playbutton').addEvent(
 							 'click',
 							 function(){
@@ -203,10 +203,10 @@ function iniciovideo3(){
 	$('video').addEvent(
 						'timeupdate',
 						function(){
-							if( $('video').currentTime>=38){
+							if( $('video').currentTime>=1.9){
 								 $('playbutton').css('display','block');
 								  $('video').pause();
-								  $('video').currentTime='36';
+								  $('video').currentTime='0';
 								  
 							}
 						}
