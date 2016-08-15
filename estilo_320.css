@@ -1,0 +1,36 @@
+@media (min-width:320px) { 
+
+#contenedorgeneral{  width:100%; }
+#contenedorgeneralinc{  width:100%; }
+
+#cajadejuego{  width:96%; padding:2%;}
+
+.logolanding{ display:block; width:237px; height:118px; background:url(images/selfie_chiclets.png) center center no-repeat; background-size:100%; position:relative; left:50%; margin-left:-118px; margin-top:10px; }
+
+.link1{  width:320px; height:242px; margin-left:-160px; margin-top:10px;}
+
+
+.btcontinuar{  /*width:35%; height:30px; line-height:30px;*/ font-size:15px;}
+
+.indicacion{ font-size:16px; }
+.subindicación{ font-size:12px; }
+
+.pregunta{  width:80%; padding:2% 10%;  bottom:5%; font-size:30px; line-height:30px; }
+
+.respuestas, .respuestas2{ width:90%; padding:5% 5%; }
+
+.opcionderespuesta, .opcionderespuesta2 {  font-size:20px; line-height:18px; }
+
+.cajaparabotones{ position:fixed;}
+
+.subtitulos{ font-size:2em; padding:15% 5% 0% 5%; }
+
+.video{ width:100%; }
+
+.preguntasinimagen{padding:15% 10%;}
+
+.preguntasinimagen2{padding:12% 10%;}
+
+.cajas{  width:35%; margin:0% 5%; font-size:12px;}
+
+}

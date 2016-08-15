@@ -1,0 +1,96 @@
+*{margin:0; padding:0; outline:none;}
+img{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+html,body{width: 100%; height:100%; margin:0; padding:0; background-color:#e6e6e6;  font-family: 'Conv_DINPro-Cond'; position:relative; text-align:center; } 
+
+textarea{resize:none}
+
+.limpiar{ clear:both;}
+
+
+.dcondensed{font-family:'Conv_DINPro-Cond',Sans-Serif;}
+.dmediumcondensed{font-family:'Conv_DINPro-CondMedium',Sans-Serif;}
+.dboldcondensed{font-family:'Conv_DIN Condensed Bold',Sans-Serif;}
+
+.fmyriad{font-family: 'PT Sans', sans-serif; font-weight:400;}
+.fmyriadbold{font-family: 'PT Sans', sans-serif; font-weight:700;}
+
+.backcolor1{ background-color:#fcbd00;}
+.backcolor2{ background-color:#a200a2;}
+.backcolor3{ background-color:#ef8fb3;}
+.backcolor4{ background-color:#026295;}
+.backcolor5{ background-color:#86cd4d;}
+.backcolor6{ background-color:#f16700;}
+
+
+
+#contenedorgeneral{ display: inline-block; width:50%; /*height:100%;*/ position:relative; text-align:center;
+
+        margin:0!important;
+        padding:0!important; }
+
+#contenedorgeneralinc{ display: inline-block; width:30%; /*height:100%;*/ position:relative; text-align:center;
+
+        margin:0!important;
+        padding:0!important; }
+		
+
+
+
+.link1{ display:block; width:810px; height:615px; background: url(images/text_pag1.png) center center no-repeat; background-size:100%; position:relative; left:50%; margin-left:-405px; margin-top:30px;}
+
+.link2{ display:block; width:810px; height:970px; background: url(images/text_pag2.png) center center no-repeat; background-size:100%; position:relative; left:50%; margin-left:-405px; margin-top:30px;}
+
+.btcomenzar{ display:block; width:100%; height:auto; position:relative; cursor:pointer;}
+
+.logoaulabi{ display:block; position:absolute; top:10px; left:10px; z-index:1000; width:15%; height:auto;}
+
+.cajadeimagen{ display:block; width:100%; /*height:720px;*/ position:relative;}
+.primeraimagen{ width:100%; height:auto;}
+
+.btcontinuar{ display: inline-block; /*width:25%; height:65px; line-height:65px;*/ font-size:25px; position:relative; text-align:center; color:#FFF; font-weight:bold; -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px; cursor:pointer; padding:2% 5%}
+.btcontinuar:hover{filter:alpha(opacity=40); opacity:0.4;}
+
+#mediodejuego{ display:block; width:100%; text-align:center; }
+
+#cajadejuego{ display: inline-block; width:90%; padding:5%;  position:relative;  text-align:center; }
+
+.cajaparabotones{ display:block; width:100%; text-align:center; position: fixed; bottom:0px; background-color:#e6e6e6; padding-top:2%; padding-bottom:2%;}
+
+.indicacion{ font-size:30px; font-weight:bold;}
+.subindicación{ font-size:20px; font-weight:normal;}
+
+.pregunta{ display:block; width:80%; padding:2% 10%;  position:relative; color:#FFF;  text-align: center; z-index:2000; font-size:70px; line-height:70px;}
+
+.respuestas, .respuestas2{ display:block; position:relative; width:60%; padding:2% 20%;  text-align:center;  }
+
+.opcionderespuesta{ display: inline-block; width:35%; margin:2%; text-align:left; font-size:50px; line-height:45px; padding-left:10%; position:relative;}
+
+.tilde{ display:block; width:20%; height:auto; position:absolute; top:0px; left:0px; cursor:pointer;}
+
+.subtitulos{ font-size:4em; padding:20% 5% 0% 5%;}
+
+.cajadevideo{ display:block; width:100%; position:relative;background-color:#a6b5cc;}
+
+.video{margin:auto; display: block; width:80%; text-align:center; }
+
+.opcionderespuesta2{ display: inline-block; width:86%; margin:2%; text-align:left; font-size:60px; line-height:60px; padding-left:10%; position:relative;}
+
+.tilde2{ display:block; width:10%; height:auto; position:absolute; top:-30%; left:0px; cursor:pointer;}
+
+.subpregunta{ font-size: 0.7em; line-height: 1em}
+
+.preguntasinimagen{padding:15% 10%; background-color:#CCC; z-index:100;}
+
+.cajas{ display: inline-block; width:30%; margin:0% 5%; font-size:20px;}
+
+.clasecaja{ width:50%; height:auto;}
+
+.respuestas3{ display:block; position:relative; width:100%;   text-align:center;  }
+
+.tildescajas{ width:50%; height:auto;}
+
+.cajadeaudio{ display: inline-block; width:100%; position:relative; margin-top:5%;}
+
+.preguntasinimagen2{padding:15% 10%; background-color:#CCC; z-index:100;}

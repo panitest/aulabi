@@ -1,0 +1,32 @@
+
+<div id="contenedorgeneral">
+
+<div class="cajadevideo"><div class="logoaulabi"><img src="images/logo-aulabi.png" width="100%" height="auto" alt="logo aulaBi" /></div>
+  <div class="video" style="position:relative;margin-bottom:-12%">
+  
+<video width="100%" controls id="video">
+<source src="video/TOS.mp4" type="video/mp4" >
+</video><div id="playbutton" style="position:absolute; background: url(images/btnplay.png) center 37% no-repeat; width:100%; height:100%; z-index:1000; top:0; left:0; cursor:pointer"></div> <div style=" position:absolute;width:100%; height:25%; background:#a6b5cc; z-index:50; left:0; bottom:0"></div>
+</div>
+  <div class="pregunta dboldcondensed backcolor3">¿QUÉ TIPO DE<br />TOS ES ESTA?</div>
+  </div>
+  
+<div id="mediodejuego">
+<div id="cajadejuego">
+<div class="indicacion fmyriadbold">INDIQUE LA RESPUESTA CORRECTA<br />
+
+
+<div class="respuestas2">
+<div class="opcionderespuesta2 dcondensed" style="cursor:pointer" onclick="respuesta3(1)"><img id="til1" src="images/tilde-cuadrado.png" class="tilde2">TOS SECA</div>
+<div class="opcionderespuesta2 dcondensed" style="cursor:pointer" onclick="respuesta3(2)"><img id="til2" src="images/tilde-cuadrado.png" class="tilde2">TOS CON FLEMA</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="cajaparabotones">
+  <div class="btcontinuar fmyriadbold backcolor3" onclick="if(!ns.rta3){alert('Por favor elija una opción');return;}getPage('3-tt-correcta.html',evaluar3)">CONTINUAR</div></div>
+
+</div>
+
+

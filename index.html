@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<title>Aula Bi - Módulo 1</title>
+<link rel="stylesheet"  href="modulo1.css" type="text/css" charset="utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="estilo_320.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="estilo_481.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="estilo_641.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="estilo_961.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="fonts/fonts.css" type="text/css" charset="utf-8" />
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+<style>
+html,body{width: 100%; height:100%; margin:0; padding:0; background:url(images/pizzarron.jpg) top center repeat;  background-color:#e6e6e6;  font-family: 'Conv_DINPro-Cond'; text-align:center;  } 
+</style>
+<script type="text/javascript" src="js/panino.js"></script>
+<script type="text/javascript" src="js/comunes.js"></script>
+<script type="text/javascript" src="js/paninoAJAX.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script>
+function getPage(p,callback){
+		request(
+			p,
+			function(r){
+				scrollTo(0,0);
+				$('appcontainer').innerHTML=r;
+				if(typeof callback=='function'){
+					callback();
+				}
+			},
+			{}
+		);
+}
+function getRandomInt(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+function setBgBody(){
+	document.body.style.background=document.documentElement.style.background='#e6e6e6';
+}
+function initVideo1(){
+	ns.rtas1=[];
+	if ($('video').hasAttribute("controls")) {
+     	$('video').removeAttribute("controls")   
+    }
+	$('video').addEventListener("play",function() { if($('video').currentTime<33)$('video').currentTime='33';});
+	$('playbutton').addEvent(
+							 'click',
+							 function(){
+								 $('video').play();
+								 $('playbutton').css('display','none');
+								 
+							 }
+	);
+	$('video').addEvent(
+						'timeupdate',
+						function(){
+							if( $('video').currentTime>=71.5){
+								 $('playbutton').css('display','block');
+								  $('video').pause();
+								  $('video').currentTime='33';
+								  
+							}
+						}
+	)
+}
+function respuesta1(nro){
+	if(inArray(nro, ns.rtas1) ){
+		//quitar y desmarcar
+		for(var i=0;i<4;i++){
+			if(ns.rtas1[i]==nro){
+				ns.rtas1.splice(i,1);
+				$('til'+nro).src='images/tilde-cuadrado.png';
+			}
+		}
+	}else{
+		//agregar y marcar
+		ns.rtas1.push(nro);
+		$('til'+nro).src='images/tilde.png';
+	}
+}
+function evaluar1(){
+	var cont=0;
+	for(var i=1;i<5;i++){
+		if(inArray(String(i),ns.rtas1)){
+			if(String(i)=='1' || String(i)=='2' ){
+				cont++;
+				$('til'+String(i)).src='images/tilde-respuestabien.png';
+			}else{
+				$('til'+String(i)).src='images/tilde-respuestamal.png';
+			}
+		}else{
+			$('til'+String(i)).src='images/tilde-cuadrado.png';
+		}
+	}
+	if(cont>1){
+		$('resultado1').innerHTML='¡CORRECTO!';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor1" onclick="getPage(\'2-st-video.html\',iniciovideo2);">CONTINUAR</div>';
+	}else{
+		$('resultado1').innerHTML='¡INTENTELO<br />NUEVAMENTE!';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor1" onclick="getPage(\'1-video.html\',function(){setBgBody();initVideo1();})">VOLVER</div>';
+	}
+}
+function iniciovideo2(){
+	if ($('video').hasAttribute("controls")) {
+     	$('video').removeAttribute("controls")   
+    }
+	$('video').muted=1;
+	$('video').addEventListener("play",function() { if($('video').currentTime<27)$('video').currentTime='27';});
+	$('playbutton').addEvent(
+							 'click',
+							 function(){
+								 $('subtitulos').innerHTML='';
+								
+								 $('video').play();
+								 $('playbutton').css('display','none');
+								 setTimeout(
+								 	function(){
+										var mse='- BUENAS TARDES.*¿PODRÍA RECOMENDARME ALGÚN JARABE PARA LA TOS?';
+										maquina(mse,$('subtitulos'));
+										setTimeout(function(){ $('btn').style.display='block';},(70*(mse.length+5)));
+									},
+									1150
+								 );
+							 }
+	);
+	$('video').addEvent(
+						'timeupdate',
+						function(){
+							if( $('video').currentTime>=33){
+								 $('playbutton').css('display','block');
+								  $('video').pause();
+								  $('video').currentTime='27';
+								  
+							}
+						}
+	)
+	
+	
+}
+function maquina(texto,contenedor){
+	var tx=texto,letra;
+	var t=setInterval(
+		function(){
+			if(!tx.length){
+				clearInterval(t);
+				return;
+			}
+			letra=tx.substr(0,1);
+			if(letra=='*')letra='<br>';
+			contenedor.innerHTML+=letra;
+			tx=tx.substr(1);
+		},70		  
+	);
+}
+ns.rta2=0;
+function respuesta2(nro){
+	$('til1').src=$('til2').src=$('til3').src='images/tilde-cuadrado.png';
+	$('til'+nro).src='images/tilde.png';
+	ns.rta2=nro;
+}
+function evaluar2(){
+	if(ns.rta2==1){
+		$('mse').innerHTML='PRUEBE DE NUEVO<br /><span class="subpregunta dcondensed">Debe tener más información antes de recomendar un producto para la tos</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor2" onclick="getPage(\'2-st-opciones.html\')">VOLVER</div>';
+	}else if(ns.rta2==3){
+		$('mse').innerHTML='PRUEBE DE NUEVO<br /><span class="subpregunta dcondensed">Es importante saber si es para un adulto o un niño. Pero antes debe tener más información</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor2" onclick="getPage(\'2-st-opciones.html\')">VOLVER</div>';
+	}else{
+		$('mse').innerHTML='¡EXCELENTE!<br /><span class="subpregunta dcondensed">Primerio debe conocer el tipo de tos</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor2" onclick="getPage(\'3-tt-video.html\',iniciovideo3)">CONTINUAR</div>';
+	}
+	$('til1').src= ns.rta2==1 ? 'images/tilde-respuestamal.png' : 'images/tilde-cuadrado.png';
+	$('til2').src= ns.rta2==2 ? 'images/tilde-respuestabien.png' : 'images/tilde-cuadrado.png';
+	$('til3').src= ns.rta2==3 ? 'images/tilde-respuestamal.png' : 'images/tilde-cuadrado.png';
+}
+function iniciovideo3(){
+	if ($('video').hasAttribute("controls")) {
+     	$('video').removeAttribute("controls")   
+    }
+	$('video').addEventListener("play",function() { if($('video').currentTime<36)$('video').currentTime='36';});
+	$('playbutton').addEvent(
+							 'click',
+							 function(){
+								 
+								
+								 $('video').play();
+								 $('playbutton').css('display','none');
+								 
+							 }
+	);
+	$('video').addEvent(
+						'timeupdate',
+						function(){
+							if( $('video').currentTime>=38){
+								 $('playbutton').css('display','block');
+								  $('video').pause();
+								  $('video').currentTime='36';
+								  
+							}
+						}
+	)
+	
+	
+	
+}
+ns.rta3=0;
+function respuesta3(nro){
+	ns.rta3=nro;
+	$('til1').src=$('til2').src='images/tilde-cuadrado.png';
+	$('til'+nro).src='images/tilde.png';
+	
+}
+function evaluar3(){
+	if(ns.rta3==1){
+		$('mse').innerHTML='¡CORRECTO!<br />';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'4-ct-pregunta.html\',cambiarColorBG)">CONTINUAR</div>';
+		
+		$('til1').src='images/tilde-respuestabien.png';
+	    $('til2').src='images/tilde-cuadrado.png';
+		
+		
+	}else{
+		$('mse').innerHTML='INCORRECTO<br /> <span class="subpregunta dcondensed">La tos con flema tiene un sonido como si se estuviera desprendiendo el moco.</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'3-tt-video.html\',iniciovideo3)">VOLVER</div>';
+		
+		$('til1').src='images/tilde-cuadrado.png';
+	    $('til2').src='images/tilde-respuestamal.png';
+	}
+}
+function cambiarColorBG(){
+	document.body.style.background=document.documentElement.style.background='#FFF';
+}
+ns.rta4=0;
+function respuesta4(nro){
+	ns.rta4=nro;
+	$('til1').src=$('til2').src='images/tilde-cuadrado.png';
+	$('til'+nro).src='images/tilde.png';
+}
+function evaluar4(){
+	if(ns.rta4==1){
+		$('mse').innerHTML='¡MUY BIEN!<br /><span class="dcondensed">ES MUY BUENO EN ESTO</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'5-qt-opciones.html\',setBgBody)">CONTINUAR</div>';
+		
+		$('til1').src='images/tilde-respuestabien.png';
+	    $('til2').src='images/tilde-cuadrado.png';
+		
+		
+	}else{
+		$('mse').innerHTML='PRUEBA NUEVAMENTE';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'4-ct-pregunta.html\',cambiarColorBG)">VOLVER</div>';
+		
+		$('til1').src='images/tilde-cuadrado.png';
+	    $('til2').src='images/tilde-respuestamal.png';
+	}
+}
+ns.rta5=0;
+function respuesta5(nro){
+	ns.rta5=nro;
+	$('til1').src=$('til2').src='images/tilde-cuadrado.png';
+	$('til'+nro).src='images/tilde.png';
+}
+function evaluar5(){
+	if(ns.rta5==2){
+		$('mse').innerHTML='¡CORRECTO!<br />    <span class="subpregunta dcondensed">Los expectorantes disuelven, desprenden y ayudan a eliminar las flemas.</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'6-st-audio.html\',cambiarColorBG);">CONTINUAR</div>';
+		
+		
+		$('til1').src='images/tilde-cuadrado.png';
+	    $('til2').src='images/tilde-respuestabien.png';
+		
+	}else{
+		$('mse').innerHTML='INCORRECTO<br /> <span class="subpregunta dcondensed">Prueba de nuevo</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'5-qt-opciones.html\',setBgBody)">VOLVER</div>';
+		$('til1').src='images/tilde-respuestamal.png';
+	    $('til2').src='images/tilde-cuadrado.png';
+		
+	}
+}
+ns.rta6=0;
+function respuesta6(nro){
+	ns.rta6=nro;
+	$('til1').src=$('til2').src='images/tilde-cuadrado.png';
+	$('til'+nro).src='images/tilde.png';
+}
+function evaluar6(){
+	if(ns.rta6==2){
+		$('mse').innerHTML='¡EXCELENTE!<br /><span style="color:#069">¡HAS COMPLETADO <br />ESTA ACTIVIDAD!';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="finalizar()">FINALIZAR</div>';
+		
+		
+		$('til1').src='images/tilde-cuadrado.png';
+	    $('til2').src='images/tilde-respuestabien.png';
+		
+	}else{
+		$('mse').innerHTML='¡NO ES CORRECTO!<br /><span style="color:#C00">¡MUY IMPORTANTE!</span><br /><span class="subpregunta dcondensed">NUNCA recomendar un antitusivo para una tos con flema. La tos es el mecanismo que tiene el cuerpo para limpiar las vías respiratorias</span>';
+		$('btn').innerHTML='<div class="btcontinuar fmyriadbold backcolor3" onclick="getPage(\'6-st-audio.html\',cambiarColorBG);">VOLVER</div>';
+		$('til1').src='images/tilde-respuestamal.png';
+	    $('til2').src='images/tilde-cuadrado.png';
+		
+	}
+}
+function finalizar(){
+	getPage('home.html',function(){document.body.style.background=document.documentElement.style.background='url(images/pizzarron.jpg) top center repeat #e6e6e6';});
+}
+</script>
+
+
+</head>
+
+<body>
+<div style="width:1px; height:1px; overflow:hidden; position:absolute; top:-15000px;">
+<img src="images/tilde.png" class="tilde">
+<img src="images/tilde-respuestabien.png" class="tilde">
+<img src="images/tilde-respuestamal.png" class="tilde">
+</div>
+<div id="appcontainer">
+<div id="contenedorgeneralinc">
+<div id="cajabasedetodo">
+<img src="images/intro.png" class="btcomenzar" onClick="getPage('1-video.html',function(){setBgBody();initVideo1();})">
+</div>
+
+</div>
+</div>
+</body>
+</html>
