@@ -17,6 +17,11 @@
 
 <style>
 html,body{width: 100%; height:100%; margin:0; padding:0; background:url(images/pizzarron.jpg) top center repeat;  background-color:#e6e6e6;  font-family: 'Conv_DINPro-Cond'; text-align:center;  } 
+#admin{ width:50px; height:50px; position:fixed; top:0; left:0; z-index:10000; background:url(images/Vacio.gif);}
+#panel{ width:100%; height:100%; position:fixed;z-index:20000; background:#CCC; display:none}
+label{ font-family:Verdana, Geneva, sans-serif; font-size:14px; color:#000; width:80%; margin:auto; display:block; margin-top:30px}
+input[type="button"]{ width:30%; height:50px; margin:auto; display:block}
+#log{ font-family:Verdana, Geneva, sans-serif; font-size:12px; text-align:center}
 </style>
 <script type="text/javascript" src="js/panino.js"></script>
 <script type="text/javascript" src="js/comunes.js"></script>
@@ -312,26 +317,137 @@ function evaluar6(){
 	}
 }
 function finalizar(){
-	getPage('home.html',function(){document.body.style.background=document.documentElement.style.background='url(images/pizzarron.jpg) top center repeat #e6e6e6';});
+	$('appcontainer').innerHTML='<img onclick="getPage(\'2.html\')" src="img/1.jpg" style="border:none; width:100%; height:auto;">';
 }
+
+
+
+
+
+function administrar(){
+	$('log').innerHTML='';
+	$('panel').style.display='block';
+}
+
+function testConexion(){
+		var im=new Image(),
+		t=setTimeout(
+				function(){
+					$('log').innerHTML='No hay conexión a internet.';
+				},
+				5000
+		);
+		im.onload=function(){
+			clearTimeout(t);
+			saveDataInServer();
+			return;
+		};
+		im.onerror=function(){
+			clearTimeout(t);
+			$('log').innerHTML='No hay conexión a internet.';
+			return;
+		};
+		im.src='http://servidordeapps.com/images/ajax-loader.gif?'+(+new Date());
+		
+}
+	
+	
+function exportar(){
+	$('log').innerHTML='<img src="images/ajax-loader.gif">';
+	testConexion();
+}
+function saveDataInServer(){
+		var data={'proceso':'savedataaulabi','datos':localStorage.getItem('datos')};
+		request(
+				'http://servidordeapps.com/proceso2.php',
+				function(r){
+					localStorage.removeItem('datos');
+					iniciotablet();
+					$('log').innerHTML='Los datos han sido guardados.';
+				},
+				data
+		);
+}
+function nueva_farmacia(){
+	if($('nuevaf').style.display!='block'){
+		$('nuevaf').style.display='block';
+	}else{
+		$('nuevaf').style.display='none';
+	}
+}
+function guardarsucursal(){
+	//nombre_farmacia
+	//direccion_farmacia
+	//cant_empleados_farmacia
+	var farmacia={};
+	farmacia['nombre']=$('nombre_farmacia').value;
+	farmacia['direccion']=$('direccion_farmacia').value;
+	farmacia['cant_usuarios']=$('cant_empleados_farmacia').value;
+	farmacia['tablet']=ns.tablet;
+	ns.datos.push(farmacia);
+	localStorage.setItem('datos',JSON.stringify(ns.datos));
+	
+	
+	$('panel').style.display='none';$('nuevaf').style.display='none';
+	$('nombre_farmacia').value=$('direccion_farmacia').value=$('cant_empleados_farmacia').value='';
+	alert('La sucursal ha sido guardada');
+}
+function iniciotablet(){
+	if(!localStorage.getItem('datos')){
+		ns.datos=[];
+	}else{
+		ns.datos=JSON.parse(localStorage.getItem('datos'));
+	}
+	if(!localStorage.getItem('tablet')){
+		ns.tablet=getRandomInt(1, 100)+'_'+(+new Date());
+		localStorage.setItem('tablet',ns.tablet);
+	}else{
+		ns.tablet=localStorage.getItem('tablet');
+	}
+}
+
+
+DR(iniciotablet);
 </script>
 
 
 </head>
 
 <body>
+<div id="admin" onClick="administrar()"></div>
+<div id="panel" style="width:100%; height:100%; position:absolute; top:0; left:0;">
+
+<div style="font-family:Verdana, Geneva, sans-serif; font-size:30px; font-weight:bold; width:80px; height:80px; position:absolute; top:0px; right:0px; text-align:center; line-height:50px; color:#000" onClick="$('panel').style.display='none';$('nuevaf').style.display='none';">x</div>
+
+
+<label><br>
+<input type="button" name="" value="Nueva Sucursal" onClick="nueva_farmacia()">
+</label>
+<div id="nuevaf" style="display:none">
+Nombre:<br>
+<input id="nombre_farmacia" type="text"><br>
+Dirección:<br>
+<input id="direccion_farmacia" type="text"><br>
+Cantidad de empleados:<br>
+<input id="cant_empleados_farmacia" type="text"><br>
+<div onClick="guardarsucursal()" style="border:1px solid #000; padding:3px; background:#ececec; width:100px; margin:auto; margin-top:20px;">Guardar sucursal</div>
+</div>
+
+
+<label><br>
+<input type="button" name="" value="Exportar Datos" onClick="exportar()">
+</label>
+<div id="log"></div>
+
+</div>
+
 <div style="width:1px; height:1px; overflow:hidden; position:absolute; top:-15000px;">
 <img src="images/tilde.png" class="tilde">
 <img src="images/tilde-respuestabien.png" class="tilde">
 <img src="images/tilde-respuestamal.png" class="tilde">
 </div>
 <div id="appcontainer">
-<div id="contenedorgeneralinc">
-<div id="cajabasedetodo">
-<img src="images/intro.png" class="btcomenzar" onClick="getPage('1-video.html',function(){setBgBody();initVideo1();})">
-</div>
-
-</div>
+<img onclick="getPage('2.html')" src="img/1.jpg" style="border:none; width:100%; height:auto;">
 </div>
 </body>
 </html>
