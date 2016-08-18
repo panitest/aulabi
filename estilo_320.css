@@ -15,7 +15,6 @@
 .indicacion{ font-size:16px; }
 .subindicación{ font-size:12px; }
 
-.pregunta{  width:80%; padding:2% 10%;  bottom:5%; font-size:30px; line-height:30px; }
 
 .respuestas, .respuestas2{ width:90%; padding:5% 5%; }
 
@@ -32,5 +31,8 @@
 .preguntasinimagen2{padding:12% 10%;}
 
 .cajas{  width:35%; margin:0% 5%; font-size:12px;}
+
+.pregunta{  width:80%; padding:2% 10%;  bottom:5%; font-size:30px; line-height:30px; }
+
 
 }

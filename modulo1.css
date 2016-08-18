@@ -61,7 +61,7 @@ border-radius: 5px; cursor:pointer; padding:2% 5%}
 .indicacion{ font-size:30px; font-weight:bold;}
 .subindicación{ font-size:20px; font-weight:normal;}
 
-.pregunta{ display:block; width:80%; padding:2% 10%;  position:relative; color:#FFF;  text-align: center; z-index:2000; font-size:70px; line-height:70px;}
+
 
 .respuestas, .respuestas2{ display:block; position:relative; width:60%; padding:2% 20%;  text-align:center;  }
 
@@ -79,7 +79,7 @@ border-radius: 5px; cursor:pointer; padding:2% 5%}
 
 .tilde2{ display:block; width:10%; height:auto; position:absolute; top:-30%; left:0px; cursor:pointer;}
 
-.subpregunta{ font-size: 0.7em; line-height: 1em}
+
 
 .preguntasinimagen{padding:15% 10%; background-color:#CCC; z-index:100;}
 
@@ -94,3 +94,7 @@ border-radius: 5px; cursor:pointer; padding:2% 5%}
 .cajadeaudio{ display: inline-block; width:100%; position:relative; margin-top:5%;}
 
 .preguntasinimagen2{padding:15% 10%; background-color:#CCC; z-index:100;}
+
+.pregunta{ display:block; width:80%; padding:2% 10%;  position:relative; color:#FFF;  text-align: center; z-index:2000;  line-height:auto; font-size:70px; line-height:70px; /*font-size:2em;*/}
+
+.subpregunta{ display:inline-block; font-size: 0.7em; line-height:1em;}
